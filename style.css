@@ -1,3 +1,5 @@
+@import "compass/css3";
+@import url(https://fonts.googleapis.com/css?family=Finger+Paint);
 body {
     color: blanchedalmond;
     background-color: rgb(104, 90, 90);
@@ -166,7 +168,7 @@ body {
     position: relative;
     max-width: 300px;
     height: 215px;
-    background-color: #fff;
+    background-color: rgb(14, 13, 13);
     margin: 30px 10px;
     padding: 20px 15px;
     display: flex;
@@ -193,6 +195,12 @@ body {
 .card_container .card .image img {
     max-width: 100%;
     border-radius: 15px;
+    opacity: 50%;
+}
+
+.card_container .card .image img:hover {
+    opacity: 100%;
+    transition: opacity 2s
 }
 
 .card_container .card .content {
@@ -211,4 +219,54 @@ body {
     visibility: visible;
     opacity: 1;
     transition-delay: 0.2s;
+}
+
+
+/*info animation*/
+
+.Info_container {
+    background: black;
+    overflow: hidden;
+    font: 5vw/100vh "Finger Paint";
+    text-align: center;
+    color: transparent;
+    backface-visibility: hidden;
+}
+
+span {
+    display: inline-block;
+    text-shadow: 0 0 0 whitesmoke;
+    animation: smoky 5s 3s both;
+}
+
+span:nth-child(even) {
+    animation-name: smoky-mirror;
+}
+
+@keyframes smoky {
+    60% {
+        text-shadow: 0 0 40px whitesmoke;
+    }
+    to {
+        transform: translate3d(15rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
+        text-shadow: 0 0 20px whitesmoke;
+        opacity: 0;
+    }
+}
+
+@keyframes smoky-mirror {
+    60% {
+        text-shadow: 0 0 40px whitesmoke;
+    }
+    to {
+        transform: translate3d(18rem, -8rem, 0) rotate(-40deg) skewX(-70deg) scale(2);
+        text-shadow: 0 0 20px whitesmoke;
+        opacity: 0;
+    }
+}
+
+@for $item from 1 through 21 {
+    span:nth-of-type(#{$item}) {
+        animation-delay: #{(3 + ($item/10))}s;
+    }
 }
